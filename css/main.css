@@ -31,3 +31,7 @@ ul {
     margin: 15px;
     margin-left: 38px;
 }
+
+.meals-input:disabled {
+    background-color: #ccc;
+}

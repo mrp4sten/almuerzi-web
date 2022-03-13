@@ -3,9 +3,9 @@ window.onload = () => {
         .then(res => res.json())
         .then(data => {
             const mealsList = document.getElementById('meals-list');
+            const btnSubmit = document.getElementById('btnSubmit');
             const template = data.map(x => '<li>' + x.name + '</li>').join('');
-
             mealsList.innerHTML = template;
-            console.log(data);
+            btnSubmit.removeAttribute('disabled'); 
         });
 }
