@@ -14,6 +14,10 @@ const renderItem = (item) => {
       x.classList.remove("selected"),
     );
     element.classList.add("selected");
+
+    const mealsIdInput = document.getElementById('meals-id');
+    mealsIdInput.value = item._id;
+
   });
 
   return element;
