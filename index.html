@@ -9,21 +9,23 @@
     <link rel="stylesheet" href="/css/main.css" type="text/css" />
   </head>
   <body>
-    <div id="meals" class="meals">
-      <ul id="meals-list" class="meals-list">
-        <p>Load...</p>
-      </ul>
-      <form id="order">
-        <input id="meals-id" type="hidden" />
-        <input id="btnSubmit" class="meals-input" type="submit" disabled />
-      </form>
-    </div>
+    <template id="orders-view">
+      <div id="meals" class="meals">
+        <ul id="meals-list" class="meals-list">
+          <p>Load...</p>
+        </ul>
+        <form id="order">
+          <input id="meals-id" type="hidden" />
+          <input id="btnSubmit" class="meals-input" type="submit" disabled />
+        </form>
+      </div>
 
-    <div id="orders" class="orders">
-      <ul id="orders-list">
-        <p>Load...</p>
-      </ul>
-    </div>
+      <div id="orders" class="orders">
+        <ul id="orders-list">
+          <p>Load...</p>
+        </ul>
+      </div>
+    </template>
 
     <script src="/js/main.js"></script>
   </body>
