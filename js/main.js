@@ -1,4 +1,5 @@
 const API_URI = "https://serverless-aq7pou9ax-mrp4sten.vercel.app";
+let mealsState = [];
 
 const stringToHTML = (s) => {
   const parser = new DOMParser();
@@ -27,7 +28,7 @@ const renderItem = (item) => {
 const renderOrder = (order, meals) => {
   const meal = meals.find((meal) => meal._id === order.meal_id);
   const element = stringToHTML(
-    `<li id="${order._id}">${meal.name} ${meal.user_id}</li>`,
+    `<li id="${order._id}">${meal.name} ${order.user_id}</li>`,
   );
   return element;
 };
@@ -36,6 +37,8 @@ window.onload = () => {
   const orderForm = document.getElementById("order");
   orderForm.onsubmit = (e) => {
     e.preventDefault();
+    const btnSubmit = document.getElementById("btnSubmit");
+    btnSubmit.setAttribute("disabled", true);
     const mealId = document.getElementById("meals-id");
     const mealIDValue = mealId.value;
 
@@ -46,7 +49,7 @@ window.onload = () => {
 
     const order = {
       meal_id: mealIDValue,
-      user_id: "user",
+      user_id: "mrp4sten",
     };
 
     fetch(API_URI + "/api/orders", {
@@ -55,12 +58,21 @@ window.onload = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(order),
-    }).then((x) => console.log(x));
+    })
+      .then((x) => x.json())
+      .then((res) => {
+        const renderedOrder = renderOrder(res, mealsState);
+        const ordersList = document.getElementById("orders-list");
+
+        ordersList.appendChild(renderedOrder);
+        btnSubmit.removeAttribute("disabled");
+      });
   };
 
   fetch(API_URI + "/api/meals")
     .then((res) => res.json())
     .then((data) => {
+      mealsState = data;
       const mealsList = document.getElementById("meals-list");
       const btnSubmit = document.getElementById("btnSubmit");
 
