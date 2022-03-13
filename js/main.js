@@ -1,4 +1,4 @@
-const API_URI = "https://serverless-mrp4sten.vercel.app/";
+const API_URI = "https://serverless-mrp4sten.vercel.app";
 let mealsState = [];
 
 const stringToHTML = (s) => {
@@ -33,7 +33,7 @@ const renderOrder = (order, meals) => {
   return element;
 };
 
-window.onload = () => {
+const initForm = () => {
   const orderForm = document.getElementById("order");
   orderForm.onsubmit = (e) => {
     e.preventDefault();
@@ -68,7 +68,9 @@ window.onload = () => {
         btnSubmit.removeAttribute("disabled");
       });
   };
+};
 
+const initData = () => {
   fetch(API_URI + "/api/meals")
     .then((res) => res.json())
     .then((data) => {
@@ -94,4 +96,9 @@ window.onload = () => {
           listOrders.forEach((element) => ordersList.appendChild(element));
         });
     });
+};
+
+window.onload = () => {
+  initForm();
+  initData();
 };
