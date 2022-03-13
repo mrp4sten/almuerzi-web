@@ -102,10 +102,19 @@ const initData = () => {
 const renderApp = () => {
   const token = localStorage.getItem("token");
   if (token) {
-    const ordersView = document.getElementById("orders-view");
-    document.getElementsByTagName("body")[0].innerHTML = ordersView.innerHTML;
+    return renderOrders();
   }
+  renderLogin();
 };
+
+const renderOrders = () => {
+
+  const ordersView = document.getElementById("orders-view");
+    document.getElementsByTagName("body")[0].innerHTML = ordersView.innerHTML;
+
+  initForm();
+  initData();
+}
 
 const renderLogin = () => {
 
@@ -133,13 +142,11 @@ const renderLogin = () => {
       .then((res) => {
         localStorage.setItem("token", res.token);
         route = "orders";
+        renderOrders();
       });
   };
 };
 
 window.onload = () => {
   renderApp();
-
-  // initForm();
-  // initData();
 };
