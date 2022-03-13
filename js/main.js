@@ -24,6 +24,14 @@ const renderItem = (item) => {
   return element;
 };
 
+const renderOrder = (order, meals) => {
+  const meal = meals.find((meal) => meal._id === order.meal_id);
+  const element = stringToHTML(
+    `<li id="${order._id}">${meal.name} ${meal.user_id}</li>`,
+  );
+  return element;
+};
+
 window.onload = () => {
   const orderForm = document.getElementById("order");
   orderForm.onsubmit = (e) => {
@@ -62,5 +70,16 @@ window.onload = () => {
       listItems.forEach((element) => mealsList.appendChild(element));
 
       btnSubmit.removeAttribute("disabled");
+      fetch(API_URI + "/api/orders")
+        .then((res) => res.json())
+        .then((ordersData) => {
+          const ordersList = document.getElementById("orders-list");
+          const listOrders = ordersData.map((orderData) =>
+            renderOrder(orderData, data),
+          );
+
+          ordersList.removeChild(ordersList.firstElementChild);
+          listOrders.forEach((element) => ordersList.appendChild(element));
+        });
     });
 };
