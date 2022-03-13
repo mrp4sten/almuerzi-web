@@ -1,9 +1,12 @@
 body {
   background-color: #eee;
+}
+
+#app {
   display: flex;
 }
 
-body div {
+#app div {
   flex-grow: 1;
   background-color: #fff;
   margin: 5px;
@@ -49,7 +52,7 @@ ul {
 }
 
 
-.form-main {
+#app .form-main {
   display: flex;
   justify-content: center;
   align-items: center;

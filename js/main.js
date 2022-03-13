@@ -29,7 +29,7 @@ const renderItem = (item) => {
 const renderOrder = (order, meals) => {
   const meal = meals.find((meal) => meal._id === order.meal_id);
   const element = stringToHTML(
-    `<li id="${order._id}">${meal.name} ${order.email_id}</li>`,
+    `<li id="${order._id}">${meal.name} ${order.user_id}</li>`,
   );
   return element;
 };
@@ -108,18 +108,16 @@ const renderApp = () => {
 };
 
 const renderOrders = () => {
-
   const ordersView = document.getElementById("orders-view");
-    document.getElementsByTagName("body")[0].innerHTML = ordersView.innerHTML;
+  document.getElementById("app").innerHTML = ordersView.innerHTML;
 
   initForm();
   initData();
-}
+};
 
 const renderLogin = () => {
-
   const loginView = document.getElementById("login-view");
-    document.getElementsByTagName("body")[0].innerHTML = loginView.innerHTML;
+  document.getElementById("app").innerHTML = loginView.innerHTML;
 
   const formLogin = document.getElementById("login-form");
   formLogin.onsubmit = (e) => {
