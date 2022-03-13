@@ -1,37 +1,49 @@
 body {
-    background-color: #eee;
-    display: flex;
+  background-color: #eee;
+  display: flex;
 }
 
 body div {
-    flex-grow: 1;
-    background-color: #fff;
-    margin: 5px;
-    margin-top: 0px;
+  flex-grow: 1;
+  background-color: #fff;
+  margin: 5px;
+  margin-top: 0px;
 }
 
-.meals{
-    margin-left: 0px;
+.meals {
+  margin-left: 0px;
 }
 
 .orders {
-    margin-right: 0px;
+  margin-right: 0px;
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .meals-input {
-    background-color: #2a91bd;
-    color: #fff;
-    padding: 10px 15px;
-    border: solid 0px;
-    border-radius: 25px;
-    margin: 15px;
-    margin-left: 38px;
+  background-color: #2a91bd;
+  color: #fff;
+  padding: 10px 15px;
+  border: solid 0px;
+  border-radius: 25px;
+  margin: 15px;
+  margin-left: 38px;
 }
 
 .meals-input:disabled {
-    background-color: #ccc;
+  background-color: #ccc;
+}
+
+.meals-list li {
+  cursor: pointer;
+}
+
+.meals-list li:hover {
+    font-weight: bold;
+}
+
+.selected {
+  background-color: #eee;
 }
