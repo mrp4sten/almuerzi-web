@@ -101,10 +101,17 @@ const initData = () => {
 
 const renderApp = () => {
   const token = localStorage.getItem("token");
-  
+  if (token) {
+    const ordersView = document.getElementById("orders-view");
+    document.getElementsByTagName("body")[0].innerHTML = ordersView.innerHTML;
+  }
 };
 
-window.onload = () => {
+const renderLogin = () => {
+
+  const loginView = document.getElementById("login-view");
+    document.getElementsByTagName("body")[0].innerHTML = loginView.innerHTML;
+
   const formLogin = document.getElementById("login-form");
   formLogin.onsubmit = (e) => {
     e.preventDefault();
@@ -128,6 +135,11 @@ window.onload = () => {
         route = "orders";
       });
   };
+};
+
+window.onload = () => {
+  renderApp();
+
   // initForm();
   // initData();
 };
