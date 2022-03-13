@@ -1,4 +1,4 @@
-const API_URI = "https://serverless-aq7pou9ax-mrp4sten.vercel.app";
+const API_URI = "https://serverless-mrp4sten.vercel.app/";
 let mealsState = [];
 
 const stringToHTML = (s) => {
