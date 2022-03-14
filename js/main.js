@@ -1,6 +1,7 @@
 const API_URI = "https://serverless-mrp4sten.vercel.app";
 let mealsState = [];
 let route = "login"; // login, register, orders
+let user = {}
 
 const stringToHTML = (s) => {
   const parser = new DOMParser();
@@ -45,12 +46,13 @@ const initForm = () => {
 
     if (!mealIDValue) {
       alert("You should select a meal");
+      btnSubmit.removeAttribute("disabled");
       return;
     }
 
     const order = {
       meal_id: mealIDValue,
-      email_id: "mrp4sten",
+      email_id: user._id,
     };
 
     fetch(API_URI + "/api/orders", {
@@ -102,6 +104,7 @@ const initData = () => {
 const renderApp = () => {
   const token = localStorage.getItem("token");
   if (token) {
+    user = JSON.parse(localStorage.getItem("user"));
     return renderOrders();
   }
   renderLogin();
@@ -140,6 +143,21 @@ const renderLogin = () => {
       .then((res) => {
         localStorage.setItem("token", res.token);
         route = "orders";
+        return res.token;
+      })
+      .then((token) => {
+        return fetch(API_URI + "/api/auth/me", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: token,
+          },
+        })
+      })
+      .then((x) => x.json())
+      .then(fetchedUser => {
+        localStorage.setItem("user", JSON.stringify(fetchedUser));
+        user = fetchedUser;
         renderOrders();
       });
   };
