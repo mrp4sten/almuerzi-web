@@ -52,13 +52,16 @@ const initForm = () => {
 
     const order = {
       meal_id: mealIDValue,
-      email_id: user._id,
+      email_id: user.email,
     };
+
+    const token2 = localStorage.getItem("token");
 
     fetch(API_URI + "/api/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: token2
       },
       body: JSON.stringify(order),
     })
